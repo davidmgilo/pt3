@@ -37,16 +37,37 @@ class connexio {
         return ($status);
     }
     
-    function DB_Select() {
-        
+    function DB_Select($strSelect) {
+        $this->DB_Open();
+        $result = mysqli_query($this->conn, $strSelect);
+        if($result){
+            if (mysqli_num_rows($result) > 0) {
+                return ($result);
+            } else {
+                return (0);
+            }
+        }else {
+            $result = mysqli_error();
+        }
+        $this->DB_Close();
     }
     
-    function DB_Execute() {
-        
+    function DB_Execute($strSelect) {
+        $this->DB_Open();
+        $result = mysqli_query($this->conn, $strSelect);
+        $this->DB_Close();
     }
     
-    function DB_Fetch() {
-        
+    function DB_Fetch($resultat) {
+        if ($resultat) {
+            if (mysqli_num_rows($result) > 0) {
+                return (mysqli_fetch_array($resultat));
+            } else {
+                return false;
+            }
+        } else{
+            return false;
+        }
     }
     
 }
