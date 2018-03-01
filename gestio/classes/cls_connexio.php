@@ -60,7 +60,7 @@ class connexio {
     
     function DB_Fetch($resultat) {
         if ($resultat) {
-            if (mysqli_num_rows($result) > 0) {
+            if (mysqli_num_rows($resultat) > 0) {
                 return (mysqli_fetch_array($resultat));
             } else {
                 return false;
