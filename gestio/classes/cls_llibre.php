@@ -54,13 +54,27 @@ class llibre extends connexio {
         $this->lli_autorllibre = $valor;
     }
     
+    // funcions de presentacio (estat i valor dels camps/accions)
+    function estatInputs(){
+            if ($this->lli_idllibre==0) return " ";
+            else return " disabled ";
+    }
+    function textSubmit(){
+            if ($this->lli_idllibre==0) return "Acceptar";
+            else return "Modificar";
+    }
+    function textDelete(){
+            if ($this->lli_idllibre==0) return "Cancelar";
+            else return "Esborrar";
+    }	
+    
     function esborra() {
         $sql="DELETE FROM LLIBRES WHERE LLI_IDLLIBRE=".$this->lli_idllibre;
         $this->DB_Execute($sql);
     }
     
     function modifica(){
-        $sql="UPDATE FROM LLIBRES SET LLI_LLIBRE='".$this->lli_llibre."', LLI_AUTORLLIBRE='".$this->lli_autorllibre."' WHERE LLI_IDLLIBRE=".$this->lli_idllibre;
+        $sql="UPDATE LLIBRES SET LLI_LLIBRE='".$this->lli_llibre."', LLI_AUTORLLIBRE='".$this->lli_autorllibre."' WHERE LLI_IDLLIBRE=".$this->lli_idllibre;
         $this->DB_Execute($sql);
         return $this->aut_idautor;
     }

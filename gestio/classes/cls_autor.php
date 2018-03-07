@@ -62,7 +62,8 @@ class autor extends connexio {
     }
     
     function modifica(){
-        $sql="UPDATE FROM AUTORS SET AUT_AUTOR='".$this->aut_autor."' WHERE AUT_IDAUTOR=".$this->aut_idautor;
+        $sql="UPDATE AUTORS SET AUT_AUTOR='".$this->aut_autor."' WHERE AUT_IDAUTOR=".$this->aut_idautor;
+        error_log(print_r($sql,true));
         $this->DB_Execute($sql);
         return $this->aut_idautor;
     }

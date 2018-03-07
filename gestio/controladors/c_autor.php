@@ -18,13 +18,28 @@ switch($_GET['accio']){
     case 'v':
         switch($_POST['h_accio']){
             case 'Acceptar':
-                echo "Vol afegir un autor";
+                $idaut=$_GET['idaut'];
+		$autor=$_POST['autor'];
+		$aut=new autor($ruta);
+		$aut->carregaValors($idaut,$autor);
+		$retorn=$aut->alta();
+                header('Location:'.$ruta.'gestio/vistes/v_autor.php?idaut='.$retorn);	
                 break;
             case 'Guardar':
-                echo "Vol modificar un autor";
+                $idaut=$_GET['idaut'];
+		$autor=$_POST['autor'];
+		$aut=new autor($ruta);
+		$aut->carregaValors($idaut,$autor);
+		$aut->modifica();
+		header('Location:'.$ruta.'gestio/vistes/v_autor.php?idaut='.$idaut);
                 break;
             case 'Esborrar':
-                echo "Vol esborrar un autor";
+                $idaut=$_GET['idaut'];
+		$autor=$_POST['h_autor'];
+		$aut=new autor($ruta);
+		$aut->carregaValors($idaut,$autor);
+		$aut->esborra();//esborra la cap�alera
+		header('Location:'.$ruta.'gestio/llistats/ll_autor.php');	
                 break;
         }
         break;
