@@ -42,6 +42,20 @@ class autor extends connexio {
         $this->aut_autor = $valor;
     }
     
+    // funcions de presentacio (estat i valor dels camps/accions)
+    function estatInputs(){
+            if ($this->aut_idautor==0) return " ";
+            else return " disabled ";
+    }
+    function textSubmit(){
+            if ($this->aut_idautor==0) return "Acceptar";
+            else return "Modificar";
+    }
+    function textDelete(){
+            if ($this->aut_idautor==0) return "Cancelar";
+            else return "Esborrar";
+    }	
+    
     function esborra() {
         $sql="DELETE FROM AUTORS WHERE AUT_IDAUTOR=".$this->aut_idautor;
         $this->DB_Execute($sql);
