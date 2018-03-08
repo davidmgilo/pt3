@@ -41,6 +41,14 @@ switch($_GET['accio']){
 		$aut->esborra();//esborra la cap�alera
 		header('Location:'.$ruta.'gestio/llistats/ll_autor.php');	
                 break;
+            case 'Nou':
+                $idaut=$_GET['idaut'];
+		$autor=$_POST['autor'];
+		$aut=new autor($ruta);
+		$aut->carregaValors($idaut,$autor);
+		$retorn=$aut->alta();
+                echo $retorn;
+                break;
         }
         break;
     

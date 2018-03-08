@@ -62,6 +62,31 @@ $lli->inicialitza($idlli);
 			document.formulari.submit();				
 		}
 	}
+        
+        function nouAutor() {
+            var h_accio = 'Nou';
+            var autor = document.getElementById('nouautorinput').value;
+                  
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '../../gestio/controladors/c_autor.php?accio=v&idlli=0');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200 ) {
+                    alert("Afegit correctament!");
+                    var sele = document.getElementById('autorllibre');
+                    var opt = document.createElement('option');
+                    opt.value = xhr.responseText;
+                    opt.innerHTML = autor;
+                    sele.appendChild(opt);
+                }
+                else if (xhr.status !== 200) {
+                    alert("Hi ha hagut un error. Status:"+xhr.status);
+                }
+            };
+            xhr.send(encodeURI('h_accio=' + h_accio + '&autor='+ autor));
+
+        }
 </script>	
 <link href="estils.css" rel="stylesheet" type="text/css">
 </head>
@@ -106,6 +131,7 @@ $lli->inicialitza($idlli);
                           ?>
                       </select>
                   </td>
+                  <td><label for="nouautorinput">Nou autor: </label><input name="nouautorinput" id="nouautorinput" value=""><button type="button" onclick="nouAutor()" id="nouautorbutton" name="nouautorbutton">Envia</button></td>
 		</tr>
 	</table>
 	<table width="100%">
