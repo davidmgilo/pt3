@@ -48,7 +48,15 @@ var TREE_ITEMS = [
 			],
                         ["Gestió de Llibres",null,
 						['Alta Nou Llibre','<?=$ruta?>gestio/controladors/c_llibre.php?accio=a'],
-						["Llistat de Llibres",'<?=$ruta?>gestio/controladors/c_llibre.php?accio=l']
+						["Llistat de Llibres",'<?=$ruta?>gestio/controladors/c_llibre.php?accio=l',
+                                                    <?php $items = $gen->llistat_llibres();
+                                                          $index = 0;
+                                                            foreach ($items as $it){
+                                                            $lli = unserialize($it);
+                                                            $index++;?>
+                                                                                ['<?= $lli->get_lli_llibre()?>','<?=$ruta?>gestio/controladors/c_llibre.php?accio=c&idlli=<?=$lli->get_lli_idllibre()?>']<?php if ($index != (count($items))) echo ",";?>
+                                                           <?php }?>
+                                                ]
 				
 			]
 		]<!--Tanca menu gestio-->

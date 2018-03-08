@@ -76,7 +76,7 @@ class llibre extends connexio {
     function modifica(){
         $sql="UPDATE LLIBRES SET LLI_LLIBRE='".$this->lli_llibre."', LLI_AUTORLLIBRE='".$this->lli_autorllibre."' WHERE LLI_IDLLIBRE=".$this->lli_idllibre;
         $this->DB_Execute($sql);
-        return $this->aut_idautor;
+        return $this->lli_idllibre;
     }
     
     function alta(){
