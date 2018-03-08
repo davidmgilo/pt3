@@ -92,8 +92,20 @@ $lli->inicialitza($idlli);
                 <tr>
 		  <td>&nbsp;</td>
 		  <td class="etiqueta">Autor</td>
-                  <td colspan="4"><input name="autorllibre" type="text" class="input" id="autorllibre" value="<?=$lli->get_lli_autorllibre()?>" size="75">
-	      </td>
+                  <td colspan="4">
+                      <select name="autorllibre" id="autorllibre">
+                          <?php
+                           $gen = new general();
+                           $autors = $gen->llistat_autors();
+                           foreach ($autors as $autor) {
+                               $aut = unserialize($autor);
+                          ?>
+                          <option value="<?= $aut->get_aut_idautor();?>" <?php if ($aut->get_aut_idautor() == $lli->get_lli_autorllibre()) echo "selected";?>><?= $aut->get_aut_autor(); ?></option>
+                          <?php
+                            }
+                          ?>
+                      </select>
+                  </td>
 		</tr>
 	</table>
 	<table width="100%">

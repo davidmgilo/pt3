@@ -29,21 +29,27 @@ $gen = new general();
   </tr>
   <tr>
     <td width="2%">&nbsp;</td>
-    <td colspan="2" class="etiqueta">Autor</td>
+    <td colspan="1" class="etiqueta">Autor</td>
+    <td colspan="2" class="etiqueta"></td>
   </tr>
 
   <?php
     $items = $gen->llistat_autors();
     foreach ($items as $it){
         $aut = unserialize($it);
+        $llibres = $aut->llibres();
   ?>
   <tr>
     <td></td>
-    <td class="<?=$class?>"><?= $aut->get_aut_autor()?></td>
+    <td class="<?=$class?>" colspan="1"><?= $aut->get_aut_autor()?></td>
+    <td colspan="2"></td>
     <td width="8%" colspan="-3" align="right"  class="scr_subTitol">
       <input name="accio_c" type="button" id="accio_c" value="[consultar]" maxlength="255" onClick="javascript:consultar_document('<?=$ruta?>gestio/controladors/c_autor.php?accio=c&idaut=<?=$aut->get_aut_idautor()?>')" class="input">    </td>
   </tr>
   
+    <?php foreach ($llibres as $llibre){?>
+  <tr>  <td colspan="1"></td><td colspan="1"></td>  <td colspan="2"> <?= $llibre->get_lli_llibre();?> </td></tr>
+    <?php }?> 
   <?php
     }
   ?>
